@@ -1,23 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2022 Likelion Dongguk</title>
-    <!--CSS-->
+{% extends 'base.html' %}
 
-    <!--JS-->
 
-    <!--navbar-->
-    
-</head>
-<body>
-    <h1>2022 Likelion 3rd Session</h1>
+
+{% block content %}
+
+
+
+ 
+    <h1>2022 Likelion 3rd Session_Assignment
+        Self introduction_Yoo Da hyeon
+
+    </h1>
 
     <!-- firstpage 링크 연결 -->
-
+    <a href="{% url 'onemain' %}">First Page_자기소개</a>
     <!-- secondpage 링크 연결-->
+    <a href="{% url 'twomain' %}">Second Page</a>
 
-</body>
-</html>
+    {% endblock %}
+

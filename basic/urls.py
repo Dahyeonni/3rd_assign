@@ -20,8 +20,14 @@ from main import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     #mainpage URL 연결하기 with 별명사용
+    path('',views.showmain, name="showmain"),
 
     # firstpage URL 연결하기 with 별명사용
+    path('fisrtpage/', views.showfirst, name="onemain"),
 
     # secondpage URL 연결하기 with 별명사용
+    path('secondpage/', views.showsecond, name="twomain"),
+
+
+
 ]
