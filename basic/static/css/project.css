@@ -1,9 +1,14 @@
 h1 {
+    text-align: center;
 
-    color: yellowgreen;
+    color: rgb(106, 147, 26);
     font: 300;
-    font-size: medium;
+    font-size: small;
     font-style: oblique;
-    background-color: bisque;
     font-weight: bold;
+}
+.content{
+    font-style: italic;
+    color: yellowgreen;
+
 }
