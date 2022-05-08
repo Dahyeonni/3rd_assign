@@ -27,6 +27,9 @@ urlpatterns = [
 
     # secondpage URL 연결하기 with 별명사용
     path('secondpage/', views.showsecond, name="twomain"),
+    path('<str:id>',views.detail, name="detail"),
+    path('new/',views.new, name="new"),
+    path('create/',views.create, name="create"),
 
 
 
