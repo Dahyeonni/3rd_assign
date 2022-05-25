@@ -6,6 +6,9 @@ def showmain(request):
     posts = Post.objects.all()
     return render(request, 'main/mainpage.html',{'posts':posts})
 
+def posts(request):
+    posts = Post.objects.all()
+    return render(request, 'main/posts.html', {'posts':posts})
 
 # firstpage view 함수
 def showfirst(request):
@@ -17,13 +20,13 @@ def showsecond(request):
     return render(request, 'main/secondpage.html')
 def detail(request,id):
     post = get_object_or_404(Post, pk = id )
-    return render(request,'main/detail.html',{'posts': post})
+    return render(request,'main/detail.html',{'post': post})
 def new(request):
     return render(request,'main/new.html')
 def create(request):
     new_post = Post()
     new_post.title = request.POST['title']
-    new_post.writer = request.POST['writer']
+    new_post.writer = request.user
     new_post.pub_date = timezone.now()
     new_post.body = request.POST['body']
     new_post.image=request.FILES.get('image')
@@ -37,7 +40,7 @@ def edit(request,id):
 def update(request,id):
     update_post = Post.objects.get(id=id)
     update_post.title = request.POST['title']
-    update_post.writer = request.POST['writer']
+    update_post.writer = request.user
     update_post.image = request.POST['image']
     update_post.pub_date = timezone.now()
     update_post.body = request.POST['body']
