@@ -58,6 +58,6 @@ def create_comment(request, post_id):
     new_comment = Comment()
     new_comment.writer = request.user
     new_comment.content = request.POST['content']
-    new_comment.post = get_object_or_404(Post, pk = post_id)
+    new_comment.blog = get_object_or_404(Post, pk = post_id)
     new_comment.save() 
     return redirect('main:detail', post_id)
