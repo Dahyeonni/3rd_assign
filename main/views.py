@@ -18,6 +18,7 @@ def showfirst(request):
 # secondpage view 함수
 def showsecond(request):
     return render(request, 'main/secondpage.html')
+
 def detail(request,id):
     post = get_object_or_404(Post, pk = id )
     all_comments = post.comments.all().order_by('-created_at')
@@ -33,7 +34,7 @@ def create(request):
     new_post.body = request.POST['body']
     new_post.image=request.FILES.get('image')
     new_post.save()
-    return redirect('detail',new_post.id)
+    return redirect('main:detail',new_post.id)
 
 def edit(request,id):
     edit_post= Post.objects.get(id=id)
@@ -54,10 +55,32 @@ def delete(request,id):
     delete_post.delete()
     return redirect('main:posts')
 
-def create_comment(request, post_id):
-    new_comment = Comment()
-    new_comment.writer = request.user
-    new_comment.content = request.POST['content']
-    new_comment.blog = get_object_or_404(Post, pk = post_id)
-    new_comment.save() 
-    return redirect('main:detail', post_id)
+
+
+def create_comment(request, id):
+    if request.method == "POST":
+        post = get_object_or_404(Post, pk=id)
+        current_user = request.user
+        comment_content = request.POST.get("content")
+        Comment.objects.create(content=comment_content, writer=current_user, posts=posts)
+    return redirect("main:detail", id)
+
+
+def edit_comment(request, id):
+    comment = Comment.objects.get(id=id)
+    if request.user == comment.writer:
+        return render(request, "main/edit_comment.html", {"comment": comment})
+    else:
+        return redirect("main:detail", comment.post.id)
+
+def update_comment(request, id):
+    comment = Comment.objects.get(id=id)
+    comment.content = request.POST.get("content")
+    comment.save()
+    return redirect("main:detail", comment.post.id)
+
+def delete_comment(request, id):
+    comment = Comment.objects.get(id=id)
+    if request.user == comment.writer:
+        comment.delete()
+    return redirect("main:detail", comment.post.id)
