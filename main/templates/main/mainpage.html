@@ -17,8 +17,9 @@
     <!-- secondpage 링크 연결-->
     <a href="{% url 'twomain' %}">Second Page_self intoduction(English.ver)</a>
     
+    {% if user.is_authenticated %}
     <h2><a href="{% url 'new'%}">글쓰기</a></h2>
-    
+    {% endif %}
 
 {% endblock %}
 

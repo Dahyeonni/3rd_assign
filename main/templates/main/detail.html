@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
+
  <h1>{{post.title}}</h1>
 {% if post.writer %}
  {% if 'user' in post.writer.username %}
@@ -28,8 +30,14 @@
 <div>
         {% for comment in comments %}
           <div>
-            작성자 : {{comment.writer}}
-             {{comment.content}}<br>
+          {% if 'user' in comment.writer.username %}
+            작성자 : {{comment.writer.last_name}}{{comment.writer.first_name}}
+            {% else %}
+            작성자: {{comment.writer}}
+            {% endif %}  
+            <br>{{comment.content}}
+             
+        <br>
                 {%if user == comment.writer %}
                 <a href="{% url 'main:edit_comment' comment.id %}">댓글 수정하기</a>
                 <a href="{% url 'main:delete_comment' comment.id %}">댓글 삭제하기</a>
