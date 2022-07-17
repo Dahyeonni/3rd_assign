@@ -1,0 +1,11 @@
+@import "reset.css";
+
+#background {
+    color: #c8d7c4;
+}
+
+.mian_head{
+    text-align: center;
+    font-style: normal;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

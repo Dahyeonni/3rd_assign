@@ -1,25 +1,91 @@
 {% extends 'base.html' %}
-
-
-
+{% load static %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/mainpage.css' %}">
+<div id="background">
+    <div class="main_head">
+        Yoo Da Hyeon
+    </div>
 
+        <div class="main_box"> 
+            안녕하세요. 저는 유다현입니다 :)
+            <br>
+            멋쟁이 사자처럼 10기 자기소개 페이지입니다 !
+            <br>
+            저에 대해 더 알고 싶으시다면, 아래의 버튼을 눌러주세요 !!
+        </div>
 
+        
+        <div class="button">
+            <!-- firstpage 링크 연결 -->
+            <div class="main_firstlink">
+            <a href="{% url 'onemain' %}" style="text-decoration: none; color: whitesmoke;">About me</a>
+            </div>
 
- 
-    <h1>2022 Likelion 3-6 Session_Assignment</h1>
-    <h2>  Self introduction_Yoo Da hyeon</h2>  
+            <!-- secondpage 링크 연결-->
+            <div class="main_secondlink">
+            <a href="{% url 'twomain' %}" style="text-decoration: none; color: whitesmoke;">club</a>
+            </div>
+        </div>
+        {% if user.is_authenticated %}
+        <h2><a href="{% url 'new'%}">글쓰기</a></h2>
 
+        {% endif %}
+</div>
+
+<style>
+@import "reset.css";
+
+#background {
+    background-color: #c8d7c4;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    height: 100%;
     
+}
 
-    <!-- firstpage 링크 연결 -->
-    <a href="{% url 'onemain' %}">First Page_자기소개(Korean.ver)</a>
-    <!-- secondpage 링크 연결-->
-    <a href="{% url 'twomain' %}">Second Page_self intoduction(English.ver)</a>
-    
-    {% if user.is_authenticated %}
-    <h2><a href="{% url 'new'%}">글쓰기</a></h2>
-    {% endif %}
+.main_head{
+    text-align: center;
+    font-style: normal;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 90px;
+}
+
+.main_box{
+    font-size: 30px;
+    font-style: normal;
+    color: seagreen;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.main_firstlink{
+    background-color: green;
+    border-radius: 17px;
+    margin-right: 100px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding: 3px 3px;
+
+}
+
+.main_secondlink{
+    background-color: green;
+    border-radius: 17px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding: 3px 3px;
+
+}
+</style>
 
 {% endblock %}
-

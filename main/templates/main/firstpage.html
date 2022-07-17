@@ -1,19 +1,87 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1> 자기소개(Korean.ver) 입니다.
-    <div class="container">
-        <div class="header">
-            <h1 class="hi"> 안녕하세요 </h1>
-            <p class="major"> 저는 경영정보학과 21 학번 유다현입니다.</p>
+
+<div id="background">
+    <div class="first_title">About me !</div>
+    <div class="first_box">
+        학과 : 경영정보학과<br>
+        학번 : 21학번<br>
+        생년월일 : 2001년 7월 31일<br>
+        나이 : 22살<br>
+        MBTI: ESTJ
+    </div>
+
+    <div class="first_button">
+
+        <div class="first_c">
+        <a href="http://dgulion.co.kr/" style="text-decoration: none; color: whitesmoke;"> 멋사 10기 </a> <br>
         </div>
-        <div class="content">
-            <p>MBTI: ESTJ</p>
-            <p>생년월일 : 2001.07.31</p>
-            <p>나이 : 22살</p>
-            <a href="http://dgulion.co.kr/" class="club"> 동아리: 멋사 10기 </a> <br>
-            <a href="https://www.instagram.com/da.hyeonii" class="sns"> 인스타그램</a>
+
+        <div class="first_i">
+        <a href="https://www.instagram.com/da.hyeonii" style="text-decoration: none; color: whitesmoke;"> 인스타그램</a>
         </div>
     </div>
-</h1>
+
+</div>
+
+<style>
+    @import "reset.css";
+    
+    #background {
+        background-color: #c8d7c4;
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        height: 100%;
+        
+    }
+
+    .first_title{
+    font-size: 30px;
+    font-style: normal;
+    color: seagreen;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    }
+
+    .first_box{
+        font-size: 18px;
+        font-style: normal;
+        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
+        font-weight: 500;
+    }
+
+    .first_button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    }
+
+    .first_c{
+        background-color: green;
+        border-radius: 17px;
+        margin-right: 100px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+        padding: 3px 3px;
+
+    }
+
+    .first_i{
+        background-color: green;
+        border-radius: 17px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+        padding: 3px 3px;
+
+    }
+
+</style>
+
 {% endblock %}
