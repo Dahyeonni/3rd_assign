@@ -1,48 +1,55 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/mainpage.css' %}">
-<div id="background">
-    <div class="main_head">
-        Yoo Da Hyeon
+<body class="main_body">
+
+    <div id="background">
+        <div class="main_head">
+            Yoo Da Hyeon
+        </div>
+
+            <div class="main_box"> 
+                안녕하세요. 저는 유다현입니다 :)
+                <br>
+                멋쟁이 사자처럼 10기 자기소개 페이지입니다 !
+                <br>
+                저에 대해 더 알고 싶으시다면, 아래의 버튼을 눌러주세요 !!
+            </div>
+
+            
+            <div class="button">
+                <!-- firstpage 링크 연결 -->
+                <div class="main_firstlink">
+                <a href="{% url 'onemain' %}" style="text-decoration: none; color: whitesmoke;">About me</a>
+                </div>
+
+                <!-- secondpage 링크 연결-->
+                <div class="main_secondlink">
+                <a href="{% url 'twomain' %}" style="text-decoration: none; color: whitesmoke;">club</a>
+                </div>
+            </div>
+            {% if user.is_authenticated %}
+            <h2><a href="{% url 'new'%}">글쓰기</a></h2>
+
+            {% endif %}
     </div>
 
-        <div class="main_box"> 
-            안녕하세요. 저는 유다현입니다 :)
-            <br>
-            멋쟁이 사자처럼 10기 자기소개 페이지입니다 !
-            <br>
-            저에 대해 더 알고 싶으시다면, 아래의 버튼을 눌러주세요 !!
-        </div>
-
-        
-        <div class="button">
-            <!-- firstpage 링크 연결 -->
-            <div class="main_firstlink">
-            <a href="{% url 'onemain' %}" style="text-decoration: none; color: whitesmoke;">About me</a>
-            </div>
-
-            <!-- secondpage 링크 연결-->
-            <div class="main_secondlink">
-            <a href="{% url 'twomain' %}" style="text-decoration: none; color: whitesmoke;">club</a>
-            </div>
-        </div>
-        {% if user.is_authenticated %}
-        <h2><a href="{% url 'new'%}">글쓰기</a></h2>
-
-        {% endif %}
-</div>
+</body>
 
 <style>
 @import "reset.css";
 
 #background {
-    background-color: #c8d7c4;
+    background-color: #616100;
     display: flex;
     width: 100%;
     flex-direction: column;
     text-align: center;
     height: 100%;
+    margin-top: 70px;
+    border-radius: 60px;
+    box-shadow: 0 5px 18px -7px rgba(0,0,0,1);
+
     
 }
 
@@ -54,12 +61,14 @@
 }
 
 .main_box{
-    font-size: 30px;
+    font-size: 20px;
     font-style: normal;
-    color: seagreen;
+    color: #242400;
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-top: 30px;
+    margin-bottom: 15px;
 
 }
 
@@ -69,7 +78,7 @@
     justify-content: center;
 }
 .main_firstlink{
-    background-color: green;
+    background-color: #424200;
     border-radius: 17px;
     margin-right: 100px;
     margin-top: 20px;
@@ -78,13 +87,25 @@
 
 }
 
+.main_firstlink:hover{
+    background-color: #bdbd00;
+}
+
+.main_secondlink:hover{
+    background-color: #bdbd00;
+}
+
 .main_secondlink{
-    background-color: green;
+    background-color: #424200;
     border-radius: 17px;
     margin-top: 20px;
     margin-bottom: 15px;
     padding: 3px 3px;
 
+}
+
+.main_body{
+    background-color: #424200;
 }
 </style>
 

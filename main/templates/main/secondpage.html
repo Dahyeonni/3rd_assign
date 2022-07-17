@@ -1,19 +1,126 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1> Self intoduction(English.ver) 입니다.
-    <div class="container">
-        <div class="header">
-            <h1 class="hi"> Hi </h1>
-            <p class="major"> My major is management information system.<hr> My name is yoo da hyeon. <hr>in '21</p>
+<body class="main_body">
+
+    <div id="background">
+        <div class="second_head">
+            Club
         </div>
-        <div class="content">
-            <p>MBTI: ESTJ</p>
-            <p>Birth : 2001.07.31</p>
-            <p>Age : 22 years old</p>
-            <a href="http://dgulion.co.kr/" class="club"> Club : Likelion 10th </a> <br>
-            <a href="https://www.instagram.com/da.hyeonii" class="sns"> Instagram</a>
+
+        <div class="likelion"> 
+            <div class="likelion_h">
+                멋쟁이 사자처럼
+            </div>
+            <div class="likelion_t">
+                저의 첫번째 동아리는 "멋쟁이 사자처럼" 입니다! 올해 들어와 멋쟁이 사자처럼 10기이며, 프론트 엔드를 담당하고 있습니다.
+                아직은 서툰 실력이지만, 방학을 이용해 인강과 여러가지 교재를 통해 코딩 실력을 향상시킬 예정입니다. 좋은 선배님들과 동기들이 많아 배울점이 많고 동기부여가 되는 동아리 입니다.
+            </div>
         </div>
+
+        <div class="barc"> 
+            <div class="barc_h">
+                BARC (바크)
+            </div>
+            <div class="barc_t">
+                저의 두번째 동아리는 "Barc" 입니다! 2021년 1학기부터 시작해 벌써 3학기째 실원으로 활동하고 있습니다. 
+                좋은 선배님들과 동기들이 많아 너무도 재밌게 활동하고 있습니다. 가끔 밤마다 모여 게임을 하던가 번개로 술을 마시기도 합니다. 이번 2학기, 바크에서 운영부장을 맡아 임원으로 활동할 예정입니다.  
+                너무 좋은 환경과 분위기는 바크가 저의 학교 생활을 만들어줬다해도 과언이 아닙니다.        
+            </div>
+        </div>
+
     </div>
-</h1>
+
+</body>
+
+<style>
+@import "reset.css";
+
+#background {
+    background-color: #616100;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 70px;
+    border-radius: 60px;
+    box-shadow: 0 5px 18px -7px rgba(0,0,0,1);
+
+    
+}
+
+.second_head{
+    text-align: center;
+    font-style: normal;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.main_body{
+    background-color: #424200;
+}
+
+.likelion{
+    background-color: #424200;
+    width: 80%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10%;
+    border-radius: 20px;
+    
+}
+
+.likelion_h{
+    font-size: 25px;
+    font-weight: 600;
+    color: whitesmoke;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.likelion_t{
+    color: whitesmoke;
+    font-size: 15px;
+    display: flex;
+    justify-content: flex-start;
+    padding: 15px 15px;
+}
+
+
+.barc{
+    background-color: #424200;
+    width: 80%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10%;
+    border-radius: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+
+.barc_h{
+    font-size: 25px;
+    font-weight: 600;
+    color: whitesmoke;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.barc_t{
+    color: whitesmoke;
+    font-size: 15px;
+    display: flex;
+    justify-content: flex-start;
+    padding: 15px 15px;
+}
+</style>
+
 {% endblock %}

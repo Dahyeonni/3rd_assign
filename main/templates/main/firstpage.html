@@ -1,50 +1,51 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<div id="background">
-    <div class="first_title">About me !</div>
-    <div class="first_box">
-        학과 : 경영정보학과<br>
-        학번 : 21학번<br>
-        생년월일 : 2001년 7월 31일<br>
-        나이 : 22살<br>
-        MBTI: ESTJ
-    </div>
-
-    <div class="first_button">
-
-        <div class="first_c">
-        <a href="http://dgulion.co.kr/" style="text-decoration: none; color: whitesmoke;"> 멋사 10기 </a> <br>
+<body class="main_body">
+    <div id="background">
+        <div class="first_title">About me !</div>
+        <div class="first_box">
+            학교 : 동국대학교<br>
+            학과 : 경영정보학과<br>
+            학번 : 21학번<br>
+            생년월일 : 2001년 7월 31일<br>
+            나이 : 22살<br>
+            MBTI: ESTJ
         </div>
 
-        <div class="first_i">
-        <a href="https://www.instagram.com/da.hyeonii" style="text-decoration: none; color: whitesmoke;"> 인스타그램</a>
-        </div>
-    </div>
+        <div class="first_button">
 
-</div>
+            <div class="first_i">
+            <a href="https://www.instagram.com/da.hyeonii" style="text-decoration: none; color: whitesmoke;"> Instagram </a>
+            </div>
+        </div>
+
+    </div>
+</body>
 
 <style>
     @import "reset.css";
     
     #background {
-        background-color: #c8d7c4;
+        background-color: #616100;
         display: flex;
         width: 100%;
         flex-direction: column;
-        text-align: center;
         height: 100%;
+        margin-top: 70px;
+        border-radius: 60px;
+        box-shadow: 0 5px 18px -7px rgba(0,0,0,1);
         
     }
 
     .first_title{
     font-size: 30px;
     font-style: normal;
-    color: seagreen;
+    color: #242400;
     display: flex;
     flex-direction: column;
     width: 100%;
+    text-align: center;
 
     }
 
@@ -55,6 +56,7 @@
         flex-direction: column;
         margin-top: 15px;
         font-weight: 500;
+        align-items: center;
     }
 
     .first_button{
@@ -63,23 +65,22 @@
     justify-content: center;
     }
 
-    .first_c{
-        background-color: green;
+
+    .first_i{
+        background-color: #424200;
         border-radius: 17px;
-        margin-right: 100px;
         margin-top: 20px;
         margin-bottom: 15px;
         padding: 3px 3px;
 
     }
 
-    .first_i{
-        background-color: green;
-        border-radius: 17px;
-        margin-top: 20px;
-        margin-bottom: 15px;
-        padding: 3px 3px;
+    .first_i:hover{
+    background-color: #bdbd00;
+    }
 
+    .main_body{
+    background-color: #424200;
     }
 
 </style>
