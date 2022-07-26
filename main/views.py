@@ -1,6 +1,13 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .models import Post, Comment
+from .models import Post, Comment, Like, Dislike
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+
+from django.views.decorators.http import require_POST
+from django.http import HttpResponse
+import json
+from django.contrib.auth.models import User
+
 # mainpage view 함수
 def showmain(request):
     posts = Post.objects.all()
@@ -84,3 +91,55 @@ def delete_comment(request, id):
     if request.user == comment.writer:
         comment.delete()
     return redirect("main:detail", comment.post.id)
+
+#like
+@require_POST
+@login_required
+def like_toggle(request, post_id):
+    post = get_object_or_404(Post, pk = post_id)
+    post_like, post_like_created = Like.objects.get_or_create(user=request.user, post=post)
+
+    if not post_like_created:
+        post_like.delete()
+        result = "like_cancel"
+    else:
+        result = "like"
+    context = {
+        "like_count" : post.like_count,
+        "result" : result
+    }
+    return HttpResponse(json.dumps(context), content_type = "application/json")
+
+def my_like(request, user_id):
+    user = User.objects.get(id = user_id)
+    like_list = Like.objects.filter(user = user)
+    context = {
+        'like_list' : like_list,
+    }
+    return render(request, 'main/my_like.html', context)    
+
+#dislike
+@require_POST
+@login_required
+def dislike_toggle(request, post_id):
+    post = get_object_or_404(Post, pk = post_id)
+    post_dislike, post_dislike_created = Dislike.objects.get_or_create(user=request.user, post=post)
+
+    if not post_dislike_created:
+        post_dislike.delete()
+        result = "dislike_cancel"
+    else:
+        result = "dislike"
+    context = {
+        "dislike_count" : post.dislike_count,
+        "result" : result
+    }
+    return HttpResponse(json.dumps(context), content_type = "application/json")
+
+def my_dislike(request, user_id):
+    user = User.objects.get(id = user_id)
+    dislike_list = Dislike.objects.filter(user = user)
+    context = {
+        'dislike_list' : dislike_list,
+    }
+    return render(request, 'main/my_dislike.html', context)    

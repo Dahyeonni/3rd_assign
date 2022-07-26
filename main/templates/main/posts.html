@@ -2,23 +2,24 @@
 {% load static %}
 
 {% block content %}
-
+<body class="posts_back">
 {% if user.is_authenticated %}
     <br>
     <h1>글 목록</h1>
+    <hr>
    
     <div>
         {% for post in posts %}
         <div>   
-            <h1>{{post.title}}</h1>
+            <h2>Title : {{post.title}}</h2>
             {% if post.writer %}
                 {% if 'user' in post.writer.username %}
-                    <h3>작성자 : {{ post.writer.last_name }} {{ post.writer.first_name }}</h3>
+                    <h3>Writer : {{ post.writer.last_name }} {{ post.writer.first_name }}</h3>
                 {% else %}
-                    <h3>작성자 : {{ post.writer }}</h3>
+                    <h3>Writer : {{ post.writer }}</h3>
                 {% endif %}
             {% else %}
-                <h3>작성자 : 알 수 없음</h3>
+                <h3>Unknown : 알 수 없음</h3>
             {% endif %}
             
             {{post.summary}}<br>
@@ -33,7 +34,13 @@
     <a href="{% url 'account_signup' %}" class="btn btn-warning">회원가입</a>
 
 {% endif %}
+</body>
 
+<style>
+.posts_back{
+    background: linear-gradient(45deg, rgba(236,212,223,1) 20%, rgba(189,181,219,1) 42%, rgba(205,217,231,1) 100%);
+    }
+</style>
 
 {% endblock %}
 

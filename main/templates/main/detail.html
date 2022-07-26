@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 
+<body class="detail_background">
 
  <h1>{{post.title}}</h1>
 {% if post.writer %}
@@ -19,6 +20,12 @@
 <p><img src="{{post.image.url}}" alt="사진"></p>
 {% endif %}
 <p>{{post.body}}</p>
+
+
+<a href="{% url 'main:edit' post.id %}">게시글 수정하기</a>
+<a href="{% url 'main:delete' post.id %}">게시글 삭제하기</a>
+<hr>
+
 <div>
         <form action="{%url 'main:create_comment' post.id%}" method="POST">
             {%csrf_token%}
@@ -36,7 +43,7 @@
             작성자: {{comment.writer}}
             {% endif %}  
             <br>{{comment.content}}
-             
+
         <br>
                 {%if user == comment.writer %}
                 <a href="{% url 'main:edit_comment' comment.id %}">댓글 수정하기</a>
@@ -48,10 +55,133 @@
 </div>
         
     
-<a href="{% url 'main:edit' post.id %}">수정하기</a>
-<a href="{% url 'main:delete' post.id %}">삭제하기</a>
+
+
+
+<!--like button-->
+<span href="#" class="like" name ="{{post.likeid}}" value="Like">
+        {% if user in post.like_user_set.all %}
+            <div class="alt-service-icon">
+                <i class="fas fa-heart" id ="like-icon" style="color:red;"></i>
+            </div>
+        {% else %}
+                <div class="alt-service-icon">
+                <i class="far fa-heart" id ="like-icon" style="color:red;"></i>
+                </div>
+        {% endif %}
+            <span id="count-{{ post.likeid }}" class="alt-services-title font-alt">
+                좋아요
+            {% if post.like_count == 0 %}
+                0개
+            {% else %}
+                {{ post.like_count }}개
+             {% endif %}
+            </span>
+</span>
+
+<!--like ajax-->
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    $(".like").click(function(){
+        var pk=$(this).attr('name')
+        $.ajax({
+             type:'POST',
+            url:"{% url 'main:like_toggle' post.pk %}",
+            data:{'pk':pk,'csrfmiddlewaretoken':'{{csrf_token}}'},
+            dataType:'json',
+            success:function(response){
+                if(response.like_count==null){
+                    alert('로그인이 필요합니다.');
+                     window.location.replace('/accounts/login/');
+                }
+                else{
+                    if(response.result=='like'){
+                       $('#like-icon').removeClass();
+                        $('#like-icon').addClass('fas fa-heart');
+                    }
+                    else{
+                         $('#like-icon').removeClass();
+                        $('#like-icon').addClass('far fa-heart');
+                     }
+                    $('#count-{{post.likeid}}').html('좋아요'+response.like_count+"개");
+                 }
+            },
+             error:function(request, status, error){
+                alert("로그인이 필요합니다.")
+                alert('code:'+request.status+'\n'+'message:'+request.responseText+"\n"+"error:"+error);
+            },
+         })
+    })
+</script>
+
+
+<!--dislike button-->
+<span href="#" class="dislike" name ="{{post.dislikeid}}" value="Dislike">
+        {% if user in post.dislike_user_set.all %}
+            <div class="alt-service-icon">
+                <i class="fas fa-heart" id ="dislike-icon" style="color:blue;"></i>
+            </div>
+        {% else %}
+                <div class="alt-service-icon">
+                <i class="fas fa-heart" id ="dislike-icon" style="color:blue;"></i>
+            </div>
+        {% endif %}
+            <span id="discount-{{ post.dislikeid }}" class="alt-services-title font-alt">
+                싫어요
+            {% if post.dislike_count == 0 %}
+                0개
+            {% else %}
+                {{ post.dislike_count }}개
+             {% endif %}
+            </span>
+</span>
+
+<!--dislike ajax-->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    $(".dislike").click(function(){
+        var pk=$(this).attr('name')
+        $.ajax({
+             type:'POST',
+            url:"{% url 'main:dislike_toggle' post.pk %}",
+            data:{'pk':pk,'csrfmiddlewaretoken':'{{csrf_token}}'},
+            dataType:'json',
+            success:function(response){
+                if(response.dislike_count==null){
+                    alert('로그인이 필요합니다.');
+                     window.location.replace('/accounts/login/');
+                }
+                else{
+                    if(response.result=='dislike'){
+                       $('#dislike-icon').removeClass();
+                        $('#dislike-icon').addClass('fas fa-heart');
+                    }
+                    else{
+                         $('#dislike-icon').removeClass();
+                        $('#dislike-icon').addClass('fas fa-heart');
+                     }
+                    $('#count-{{post.dislikeid}}').html('싫어요'+response.dislike_count+"개");
+                 }
+            },
+             error:function(request, status, error){
+                alert("로그인이 필요합니다.")
+                alert('code:'+request.status+'\n'+'message:'+request.responseText+"\n"+"error:"+error);
+            },
+         })
+    })
+</script>
+    
 
 <br><br>
 <hr>
 <h5><a href="{% url 'main:posts' %}">목록</a></h5>
+</body>
+
+<style>
+.detail_background{
+        background: linear-gradient(45deg, rgba(236,212,223,1) 20%, rgba(189,181,219,1) 42%, rgba(205,217,231,1) 100%);
+        }
+
+</style>
 {% endblock %}
