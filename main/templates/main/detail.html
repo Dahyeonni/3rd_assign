@@ -6,7 +6,7 @@
 
  <h1>{{post.title}}</h1>
 {% if post.writer %}
- {% if 'user' in post.writer.username %}
+    {% if 'user' in post.writer.username %}
      <h3>Writer : <a href="{% url 'users:mypage' post.writer.id %}">{ post.writer.last_name }} {{ post.writer.first_name }}</h3></a>{
     {% else %}
      <h3>Writer : <a href="{% url 'users:mypage' post.writer.id %}">{{ post.writer }}</h3></a>
@@ -21,9 +21,10 @@
 {% endif %}
 <p>{{post.body}}</p>
 
-
-<a href="{% url 'main:edit' post.id %}">게시글 수정</a>
-<a href="{% url 'main:delete' post.id %}">게시글 삭제</a>
+    {%if user == post.writer %}
+    <a href="{% url 'main:edit' post.id %}">게시글 수정</a>
+    <a href="{% url 'main:delete' post.id %}">게시글 삭제</a>
+    {% endif %}
 <hr>
 
 <div>
